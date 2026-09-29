@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+	{
+		date: '03—08 / 2026',
+		company: 'CEA Cadarache',
+		role: 'Stage de fin d’études',
+		roleEn: 'Final-year internship',
+		description:
+			'Conception, développement, test et déploiement autonome de projets mobile et VR sur Unreal Engine 5 (Blueprint & C++).',
+		descriptionEn:
+			'Independent design, development, testing and deployment of mobile and VR projects with Unreal Engine 5 (Blueprint & C++).',
+		tag: '1000+ visiteurs à SOFT 2026',
+		tagEn: '1000+ visitors at SOFT 2026',
+	},
+	{
+		date: '06—08 / 2025',
+		company: 'Inria Lille',
+		role: 'Projet & stage de recherche AR + IHM',
+		roleEn: 'AR + HCI research project & internship',
+		description:
+			'Recherche et expérimentation autour de méthodes d’interaction main libre, avec développement sur MRTK 2 / Unity 3D.',
+		descriptionEn:
+			'Research and experimentation around hands-free interaction methods, with development on MRTK 2 / Unity 3D.',
+		tag: 'Recherche appliquée',
+		tagEn: 'Applied research',
+	},
+];
+
+const skills = ['C / C++', 'C#', 'Python', 'Unity 3D', 'Unreal Engine 5', 'Git', 'Kanban'];
+
+const education = [
+	['2024—2026', 'Master Informatique — Réalité Virtuelle & Augmentée', 'Université de Lille', 'Computer Science Master — Virtual & Augmented Reality'],
+	['2023—2024', 'Licence Informatique — 3e année en échange', 'Université de Montréal · Canada', 'Computer Science Bachelor — third year exchange'],
+	['2021—2023', 'Licence Informatique International', 'Université Grenoble-Alpes', 'International Computer Science Bachelor'],
+];
+---
+
+<Layout>
+	<main>
+		<nav class="nav shell" aria-label="Navigation principale">
+			<a class="wordmark" href="/" aria-label="Thomas Boudot, accueil">
+				<span class="wordmark-mark">TB</span>
+				<span>Thomas Boudot</span>
+			</a>
+			<div class="nav-links">
+				<a href="#experience" data-fr="Expérience" data-en="Experience">Expérience</a>
+				<a href="#expertise" data-fr="Expertise" data-en="Expertise">Expertise</a>
+				<div class="language-switch" aria-label="Choisir la langue">
+					<button class="language-button is-active" data-language="fr" type="button">FR</button>
+					<span>/</span>
+					<button class="language-button" data-language="en" type="button">EN</button>
+				</div>
+				<a class="nav-contact" href="mailto:thomasboudot2003@gmail.com"><span data-fr="Me contacter" data-en="Contact me">Me contacter</span> ↗</a>
+			</div>
+		</nav>
+
+		<section class="hero shell" aria-labelledby="hero-title">
+			<div class="hero-copy">
+				<p class="eyebrow"><span class="status-dot"></span> <span data-fr="Disponible dès septembre 2026" data-en="Available from September 2026">Disponible dès septembre 2026</span></p>
+				<h1 id="hero-title" data-fr="Je construis<br /><em>des mondes</em><br />à habiter." data-en="I build<br /><em>worlds</em><br />to inhabit.">Je construis<br /><em>des mondes</em><br />à habiter.</h1>
+				<p class="hero-intro" data-fr="Ingénieur informatique spécialisé en <strong>réalité virtuelle, augmentée</strong> et interaction humain-machine. Je transforme des idées complexes en expériences immersives, utiles et intuitives." data-en="Computer engineer specialized in <strong>virtual and augmented reality</strong> and human-computer interaction. I turn complex ideas into immersive, useful and intuitive experiences.">
+					Ingénieur informatique spécialisé en <strong>réalité virtuelle, augmentée</strong> et
+					interaction humain-machine. Je transforme des idées complexes en expériences
+					immersives, utiles et intuitives.
+				</p>
+				<div class="hero-actions">
+					<a class="button button-primary" href="#experience"><span data-fr="Découvrir mon parcours" data-en="Explore my journey">Découvrir mon parcours</span> <span>↓</span></a>
+					<a class="button button-secondary" href="mailto:thomasboudot2003@gmail.com"><span data-fr="Échanger avec moi" data-en="Let's talk">Échanger avec moi</span> <span>↗</span></a>
+				</div>
+			</div>
+
+			<div class="hero-visual" aria-label="Profil de Thomas Boudot">
+				<div class="visual-grid"></div>
+				<div class="orbit orbit-large"></div>
+				<div class="orbit orbit-small"></div>
+				<div class="visual-core">
+					<span class="core-label">VR / AR</span>
+					<span class="core-symbol">+</span>
+					<span class="core-caption">interaction<br />& simulation</span>
+				</div>
+				<div class="visual-note note-top">01 / profil</div>
+				<div class="visual-note note-bottom">France</div>
+			</div>
+		</section>
+
+		<div class="ticker" aria-hidden="true">
+			<div class="ticker-track">
+				<div class="ticker-set">
+					<span data-fr="Réalité virtuelle" data-en="Virtual reality">Réalité virtuelle</span><i>✳</i><span data-fr="Réalité augmentée" data-en="Augmented reality">Réalité augmentée</span><i>✳</i><span data-fr="Interaction humain-machine" data-en="Human-computer interaction">Interaction humain-machine</span><i>✳</i><span data-fr="Prototypage immersif" data-en="Immersive prototyping">Prototypage immersif</span><i>✳</i>
+				</div>
+				<div class="ticker-set" aria-hidden="true">
+					<span data-fr="Réalité virtuelle" data-en="Virtual reality">Réalité virtuelle</span><i>✳</i><span data-fr="Réalité augmentée" data-en="Augmented reality">Réalité augmentée</span><i>✳</i><span data-fr="Interaction humain-machine" data-en="Human-computer interaction">Interaction humain-machine</span><i>✳</i><span data-fr="Prototypage immersif" data-en="Immersive prototyping">Prototypage immersif</span><i>✳</i>
+				</div>
+				<div class="ticker-set" aria-hidden="true">
+					<span data-fr="Réalité virtuelle" data-en="Virtual reality">Réalité virtuelle</span><i>✳</i><span data-fr="Réalité augmentée" data-en="Augmented reality">Réalité augmentée</span><i>✳</i><span data-fr="Interaction humain-machine" data-en="Human-computer interaction">Interaction humain-machine</span><i>✳</i><span data-fr="Prototypage immersif" data-en="Immersive prototyping">Prototypage immersif</span><i>✳</i>
+				</div>
+				<div class="ticker-set" aria-hidden="true">
+					<span data-fr="Réalité virtuelle" data-en="Virtual reality">Réalité virtuelle</span><i>✳</i><span data-fr="Réalité augmentée" data-en="Augmented reality">Réalité augmentée</span><i>✳</i><span data-fr="Interaction humain-machine" data-en="Human-computer interaction">Interaction humain-machine</span><i>✳</i><span data-fr="Prototypage immersif" data-en="Immersive prototyping">Prototypage immersif</span><i>✳</i>
+				</div>
+			</div>
+		</div>
+
+		<section class="content-grid shell" id="experience">
+			<div class="section-heading">
+				<p class="section-index">02 / <span data-fr="expérience" data-en="experience">expérience</span></p>
+				<h2 data-fr="Des idées qui<br /><em>prennent vie.</em>" data-en="Ideas that<br /><em>come alive.</em>">Des idées qui<br /><em>prennent vie.</em></h2>
+			</div>
+			<div class="experience-list">
+				{experience.map((item, index) => (
+					<article class="experience-item">
+						<div class="experience-number">0{index + 1}</div>
+						<div class="experience-detail">
+							<p class="date">{item.date}</p>
+							<h3>{item.company}</h3>
+							<p class="role" data-fr={item.role} data-en={item.roleEn}>{item.role}</p>
+							<p class="description" data-fr={item.description} data-en={item.descriptionEn}>{item.description}</p>
+							<span class="tag" data-fr={item.tag} data-en={item.tagEn}>{item.tag}</span>
+						</div>
+						<span class="arrow">↗</span>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="expertise shell" id="expertise">
+			<div class="section-heading">
+				<p class="section-index">03 / <span data-fr="boîte à outils" data-en="toolbox">boîte à outils</span></p>
+				<h2 data-fr="Le bon outil<br /><em>au bon moment.</em>" data-en="The right tool<br /><em>at the right time.</em>">Le bon outil<br /><em>au bon moment.</em></h2>
+			</div>
+			<div class="expertise-body">
+				<p class="expertise-intro" data-fr="Du premier prototype au déploiement, je travaille à l’intersection du code, du design d’interaction et de la recherche." data-en="From first prototype to deployment, I work at the intersection of code, interaction design and research.">Du premier prototype au déploiement, je travaille à l’intersection du code, du design d’interaction et de la recherche.</p>
+				<div class="skill-list">
+					{skills.map((skill, index) => <span><b>0{index + 1}</b>{skill}</span>)}
+				</div>
+				<div class="language-row">
+					<span class="language-badge">FR</span> <span data-fr="Français courant" data-en="Fluent French">Français courant</span> <span class="language-badge">EN</span> <span data-fr="Anglais bilingue" data-en="Bilingual English">Anglais bilingue</span> <small>IELTS & TOEIC</small>
+				</div>
+			</div>
+		</section>
+
+		<section class="education shell">
+			<div class="section-heading">
+				<p class="section-index">04 / <span data-fr="formation" data-en="education">formation</span></p>
+				<h2 data-fr="Curieux par<br /><em>nature.</em>" data-en="Naturally<br /><em>curious.</em>">Curieux par<br /><em>nature.</em></h2>
+			</div>
+			<div class="education-list">
+				{education.map((item) => (
+					<div class="education-item">
+						<span class="education-date">{item[0]}</span>
+						<div><h3 data-fr={item[1]} data-en={item[3]}>{item[1]}</h3><p data-fr={item[2]} data-en={item[2]}>{item[2]}</p></div>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<footer class="footer shell">
+			<div>
+				<p class="section-index">05 / <span data-fr="à bientôt" data-en="see you soon">à bientôt</span></p>
+				<h2 data-fr="On imagine<br /><em>la suite ?</em>" data-en="Shall we imagine<br /><em>what's next?</em>">On imagine<br /><em>la suite ?</em></h2>
+			</div>
+			<div class="footer-actions">
+				<a class="footer-email" href="mailto:thomasboudot2003@gmail.com">thomasboudot2003@gmail.com <span>↗</span></a>
+				<a class="button button-primary footer-cv" href="/CV_Thomas_Boudot_2026_sanscontact.pdf" download>
+					<span data-fr="Télécharger mon CV" data-en="Download my CV">Télécharger mon CV</span> <span>↓</span>
+				</a>
+			</div>
+			<p class="footer-meta">Thomas Boudot · Ingénieur Informatique · 2026</p>
+		</footer>
+	</main>
+</Layout>
+
+<script>
+	const startLab = [64.1, 9.2, -43.2];
+	const endLab = [54.8, 49.7, -46.4];
+
+	function srgbToLinear(value) {
+		const channel = value / 255;
+		return channel <= 0.04045 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+	}
+
+	function hexToLab(hex) {
+		const rgb = hex.match(/\w\w/g)?.map((channel) => srgbToLinear(parseInt(channel, 16)));
+		if (!rgb) return startLab;
+		const [r, g, b] = rgb;
+		const x = (r * 0.4124 + g * 0.3576 + b * 0.1805) / 0.95047;
+		const y = (r * 0.2126 + g * 0.7152 + b * 0.0722);
+		const z = (r * 0.0193 + g * 0.1192 + b * 0.9505) / 1.08883;
+		const f = (value) => value > 0.008856 ? Math.cbrt(value) : (7.787 * value) + 16 / 116;
+		return [116 * f(y) - 16, 500 * (f(x) - f(y)), 200 * (f(y) - f(z))];
+	}
+
+	function labToHex([lightness, a, b]) {
+		const f = (value) => {
+			const cube = value ** 3;
+			return cube > 0.008856 ? cube : (value - 16 / 116) / 7.787;
+		};
+		const y = f((lightness + 16) / 116);
+		const x = f(a / 500 + (lightness + 16) / 116) * 0.95047;
+		const z = f((lightness + 16) / 116 - b / 200) * 1.08883;
+		const toSrgb = (value) => {
+			const channel = value <= 0.0031308 ? 12.92 * value : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+			return Math.max(0, Math.min(255, Math.round(channel * 255)));
+		};
+		return `#${[toSrgb(x * 3.2406 - y * 1.5372 - z * 0.4986), toSrgb(x * -0.9689 + y * 1.8758 + z * 0.0415), toSrgb(x * 0.0557 - y * 0.204 + z * 1.057)].map((value) => value.toString(16).padStart(2, '0')).join('')}`;
+	}
+
+	const fromLab = hexToLab('#3d9fdb');
+	const toLab = hexToLab('#a463e0');
+	const updateAccent = () => {
+		const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+		const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+		const color = fromLab.map((value, index) => value + (toLab[index] - value) * progress);
+		document.documentElement.style.setProperty('--accent', labToHex(color));
+	};
+	window.addEventListener('scroll', updateAccent, { passive: true });
+	updateAccent();
+
+	const ticker = document.querySelector('.ticker');
+	const tickerTrack = document.querySelector('.ticker-track');
+	const tickerSource = tickerTrack?.querySelector('.ticker-set');
+	const updateTicker = () => {
+		if (!ticker || !tickerTrack || !tickerSource) return;
+		const sourceWidth = tickerSource.getBoundingClientRect().width;
+		const requiredCopies = Math.ceil((ticker.getBoundingClientRect().width * 2) / sourceWidth);
+		while (tickerTrack.children.length < requiredCopies) {
+			const copy = tickerSource.cloneNode(true);
+			copy.setAttribute('aria-hidden', 'true');
+			tickerTrack.append(copy);
+		}
+		tickerTrack.style.setProperty('--ticker-loop-width', `${sourceWidth}px`);
+	};
+	window.addEventListener('resize', updateTicker);
+	updateTicker();
+	document.fonts?.ready.then(updateTicker);
+
+	document.querySelectorAll('.language-button').forEach((button) => {
+		button.addEventListener('click', () => {
+			const language = button.dataset.language ?? 'fr';
+			document.documentElement.lang = language;
+			document.querySelectorAll('[data-fr][data-en]').forEach((element) => {
+				element.innerHTML = element.dataset[language] ?? element.dataset.fr ?? '';
+			});
+			document.querySelectorAll('.language-button').forEach((item) => item.classList.toggle('is-active', item === button));
+		});
+	});
+</script>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+	:global(:root) { --ink: #f2f0e9; --muted: #9b9b91; --paper: #101110; --accent: #3d9fdb; --line: rgba(242, 240, 233, .16); }
+	:global(html) { scroll-behavior: smooth; background: var(--paper); }
+	:global(body) { background: var(--paper); color: var(--ink); font-family: 'Manrope', sans-serif; }
+	:global(*) { box-sizing: border-box; }
+	.shell { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+	main { overflow: hidden; }
+	.nav { align-items: center; display: flex; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid var(--line); }
+	.wordmark { align-items: center; color: var(--ink); display: flex; font-size: 13px; font-weight: 700; gap: 11px; letter-spacing: -.02em; text-decoration: none; }
+	.wordmark-mark { align-items: center; background: var(--accent); color: var(--paper); display: flex; font-family: 'DM Mono', monospace; font-size: 11px; height: 27px; justify-content: center; letter-spacing: -.1em; width: 27px; }
+	.nav-links { align-items: center; display: flex; gap: 35px; }
+	.nav-links a { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; text-decoration: none; transition: color .2s; }
+	.nav-links a:hover { color: var(--accent); }
+	.language-switch { align-items: center; color: var(--muted); display: flex; font-family: 'DM Mono', monospace; font-size: 10px; gap: 4px; }
+	.language-button { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; padding: 3px; }
+	.language-button.is-active { color: var(--accent); }
+	.nav-contact { border: 1px solid var(--line); color: var(--ink) !important; padding: 10px 13px; }
+	.nav-contact span, .button span, .footer-email span { color: var(--accent); margin-left: 7px; }
+	.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 8%; min-height: 650px; padding-bottom: 95px; padding-top: 100px; }
+	.hero-copy { align-self: center; }
+	.eyebrow, .section-index, .date, .visual-note { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+	.eyebrow { align-items: center; display: flex; gap: 9px; margin: 0 0 32px; }
+	.status-dot { background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent); height: 6px; width: 6px; }
+	h1, h2, h3, p { margin-top: 0; }
+	h1 { font-size: clamp(54px, 7.5vw, 106px); letter-spacing: -.08em; line-height: .91; margin-bottom: 36px; max-width: 740px; }
+	h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
+	.hero-intro { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 490px; }
+	.hero-intro strong { color: var(--ink); font-weight: 500; }
+	.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 39px; }
+	.button { font-family: 'DM Mono', monospace; font-size: 11px; padding: 15px 18px; text-decoration: none; transition: transform .2s, background .2s; }
+	.button:hover { transform: translateY(-3px); }
+	.button-primary { background: var(--accent); color: var(--paper); }
+	.button-primary span { color: var(--paper); }
+	.button-secondary { border: 1px solid var(--line); color: var(--ink); }
+	.hero-visual { align-self: center; aspect-ratio: 1; max-width: 465px; position: relative; }
+	.visual-grid { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 58px 58px; inset: 10%; opacity: .4; position: absolute; transform: rotate(12deg); }
+	.orbit { border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent); border-radius: 50%; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%) rotate(-25deg); }
+	.orbit-large { height: 83%; width: 83%; }
+	.orbit-small { border-color: var(--line); height: 58%; transform: translate(-50%, -50%) rotate(55deg); width: 110%; }
+	.visual-core { align-items: center; background: var(--accent); color: var(--paper); display: flex; flex-direction: column; height: 43%; justify-content: center; left: 50%; position: absolute; text-align: center; top: 50%; transform: translate(-50%, -50%); width: 43%; }
+	.core-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .08em; }
+	.core-symbol { font-size: 42px; font-weight: 300; line-height: .85; margin: 9px 0; }
+	.core-caption { font-family: 'DM Mono', monospace; font-size: 9px; line-height: 1.4; text-transform: uppercase; }
+	.visual-note { position: absolute; }
+	.note-top { right: 0; top: 13%; }
+	.note-bottom { bottom: 12%; left: 3%; }
+	.ticker { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); color: var(--accent); display: flex; font-family: 'DM Mono', monospace; font-size: 11px; overflow: hidden; padding: 17px 0; white-space: nowrap; }
+	.ticker-track { animation: scroll 32s linear infinite; display: flex; width: max-content; }
+	.ticker-set { align-items: center; display: flex; flex: none; gap: 27px; padding-right: 27px; }
+	.ticker i { color: var(--ink); font-style: normal; }
+	@keyframes scroll { to { transform: translate3d(calc(var(--ticker-loop-width) * -1), 0, 0); } }
+	.content-grid, .expertise, .education { border-bottom: 1px solid var(--line); display: grid; gap: 10%; grid-template-columns: .72fr 1.28fr; padding-bottom: 115px; padding-top: 120px; }
+	.section-index { margin-bottom: 24px; }
+	h2 { font-size: clamp(36px, 4vw, 58px); letter-spacing: -.07em; line-height: .95; margin-bottom: 0; }
+	.experience-item { border-top: 1px solid var(--line); display: grid; gap: 22px; grid-template-columns: 40px 1fr 30px; padding: 28px 0 32px; }
+	.experience-number, .education-date { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; }
+	.date { margin-bottom: 13px; }
+	h3 { font-size: 21px; letter-spacing: -.05em; margin-bottom: 6px; }
+	.role { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; margin-bottom: 20px; }
+	.description { color: var(--muted); font-size: 13px; line-height: 1.65; margin-bottom: 18px; max-width: 490px; }
+	.tag { border: 1px solid var(--line); color: var(--ink); font-family: 'DM Mono', monospace; font-size: 10px; padding: 7px 9px; }
+	.arrow { color: var(--accent); font-size: 21px; }
+	.expertise-body { padding-top: 5px; }
+	.expertise-intro { color: var(--muted); font-size: 16px; line-height: 1.65; max-width: 440px; }
+	.skill-list { display: flex; flex-wrap: wrap; gap: 10px 7px; margin: 34px 0; }
+	.skill-list span { border: 1px solid var(--line); font-family: 'DM Mono', monospace; font-size: 12px; padding: 11px 13px; }
+	.skill-list b { color: var(--accent); font-size: 9px; font-weight: 400; margin-right: 10px; }
+	.language-row { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 11px; gap: 9px; }
+	.language-row .language-badge { align-items: center; background: var(--accent); color: var(--paper); display: flex; font-size: 9px; height: 23px; justify-content: center; width: 23px; }
+	.language-row small { color: var(--muted); font-size: 9px; margin-left: 8px; }
+	.education-list { border-top: 1px solid var(--line); }
+	.education-item { align-items: start; border-bottom: 1px solid var(--line); display: grid; gap: 28px; grid-template-columns: 115px 1fr; padding: 23px 0; }
+	.education-item h3 { font-size: 16px; margin-bottom: 7px; }
+	.education-item p { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; margin: 0; }
+	.footer { display: grid; grid-template-columns: .72fr 1.28fr; gap: 10%; min-height: 560px; padding-bottom: 120px; padding-top: 150px; position: relative; }
+	.footer-actions { align-items: flex-start; display: flex; flex-direction: column; gap: 28px; justify-content: center; }
+	.footer-email { color: var(--ink); font-family: 'DM Mono', monospace; font-size: clamp(15px, 2vw, 23px); text-decoration: none; }
+	.footer-email:hover { color: var(--accent); }
+	.footer-cv { display: inline-block; }
+	.footer-meta { border-top: 1px solid var(--line); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; grid-column: 1 / -1; margin: auto 0 0; padding-top: 24px; text-align: center; width: 100%; }
+	@media (max-width: 700px) {
+		.shell { width: min(100% - 40px, 1180px); }
+		.nav-links a:not(.nav-contact) { display: none; }
+		.nav { padding: 20px 0; }
+		.hero { display: block; min-height: auto; padding-bottom: 70px; padding-top: 75px; }
+		h1 { font-size: clamp(52px, 16vw, 86px); }
+		.hero-visual { margin: 65px auto 0; max-width: 390px; }
+		.content-grid, .expertise, .education, .footer { display: block; padding-bottom: 75px; padding-top: 78px; }
+		.section-heading { margin-bottom: 55px; }
+		.footer-actions { margin-top: 55px; }
+		.footer-email { display: block; }
+		.footer-meta { margin-top: 100px; }
+		.education-item { grid-template-columns: 88px 1fr; gap: 14px; }
+	}
+</style>
