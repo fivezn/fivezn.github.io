@@ -80,9 +80,9 @@ const education = [
 				<div class="orbit orbit-large"></div>
 				<div class="orbit orbit-small"></div>
 				<div class="visual-core">
-					<span class="core-label">VR / AR</span>
-					<span class="core-symbol">+</span>
-					<span class="core-caption">interaction<br />& simulation</span>
+					<span class="core-label" data-fr="Réalité<br />virtuelle" data-en="Virtual<br />Reality">Réalité<br />virtuelle</span>
+					<span class="core-symbol">&amp;</span>
+					<span class="core-label" data-fr="Réalité<br />augmentée" data-en="Augmented<br />Reality">Réalité<br />augmentée</span>
 				</div>
 				<div class="visual-note note-top">01 / profil</div>
 				<div class="visual-note note-bottom">France</div>
@@ -286,7 +286,7 @@ const education = [
 	.eyebrow { align-items: center; display: flex; gap: 9px; margin: 0 0 32px; }
 	.status-dot { background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent); height: 6px; width: 6px; }
 	h1, h2, h3, p { margin-top: 0; }
-	h1 { font-size: clamp(54px, 7.5vw, 106px); letter-spacing: -.08em; line-height: .91; margin-bottom: 36px; max-width: 740px; }
+	h1 { font-size: clamp(60px, 8.5vw, 122px); font-weight: 800; letter-spacing: -.09em; line-height: .89; margin-bottom: 36px; max-width: 820px; }
 	h1 :global(em), h2 :global(em) { color: var(--accent); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
 	.hero-intro { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 490px; }
 	.hero-intro :global(strong) { color: var(--ink); font-weight: 500; }
@@ -302,9 +302,8 @@ const education = [
 	.orbit-large { height: 83%; width: 83%; }
 	.orbit-small { border-color: var(--line); height: 58%; transform: translate(-50%, -50%) rotate(55deg); width: 110%; }
 	.visual-core { align-items: center; background: var(--accent); color: var(--paper); display: flex; flex-direction: column; height: 43%; justify-content: center; left: 50%; position: absolute; text-align: center; top: 50%; transform: translate(-50%, -50%); width: 43%; }
-	.core-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .08em; }
-	.core-symbol { font-size: 42px; font-weight: 300; line-height: .85; margin: 9px 0; }
-	.core-caption { font-family: 'DM Mono', monospace; font-size: 9px; line-height: 1.4; text-transform: uppercase; }
+	.core-label { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 700; letter-spacing: .02em; line-height: 1.15; text-transform: uppercase; }
+	.core-symbol { font-size: 28px; font-weight: 300; line-height: .85; margin: 7px 0; }
 	.visual-note { position: absolute; }
 	.note-top { right: 0; top: 13%; }
 	.note-bottom { bottom: 12%; left: 3%; }
