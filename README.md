@@ -1,4 +1,11 @@
-# Astro Starter Kit: Basics
+# Thomas Boudot Portfolio
+
+This site is built with Astro and deployed to GitHub Pages through the workflow in
+`.github/workflows/deploy.yml`.
+
+In the repository settings, set **Pages → Build and deployment → Source** to
+**GitHub Actions**. Do not use the legacy “Deploy from a branch” Jekyll builder:
+it attempts to parse `.astro` files as YAML front matter.
 
 ```sh
 npm create astro@latest -- --template basics
