@@ -47,11 +47,15 @@ const education = [
 			<div class="nav-links">
 				<a href="#experience" data-fr="Expérience" data-en="Experience">Expérience</a>
 				<a href="#expertise" data-fr="Expertise" data-en="Expertise">Expertise</a>
-				<div class="language-switch" aria-label="Choisir la langue">
-					<button class="language-button is-active" data-language="fr" type="button">FR</button>
-					<span>/</span>
-					<button class="language-button" data-language="en" type="button">EN</button>
-				</div>
+				<button
+					class="language-button"
+					type="button"
+					aria-label="Switch language to English"
+					aria-pressed="false"
+					data-language="fr"
+				>
+					<span class="language-option is-active">FR</span><span aria-hidden="true"> / </span><span class="language-option">EN</span>
+				</button>
 				<a class="nav-contact" href="mailto:thomasboudot2003@gmail.com"><span data-fr="Me contacter" data-en="Contact me">Me contacter</span> ↗</a>
 			</div>
 		</nav>
@@ -135,7 +139,7 @@ const education = [
 					{skills.map((skill, index) => <span><b>0{index + 1}</b>{skill}</span>)}
 				</div>
 				<div class="language-row">
-					<span class="language-badge">FR</span> <span data-fr="Français courant" data-en="Fluent French">Français courant</span> <span class="language-badge">EN</span> <span data-fr="Anglais bilingue" data-en="Bilingual English">Anglais bilingue</span> <small>IELTS & TOEIC</small>
+					<span class="language-badge">FR</span> <span class="language-badge">EN</span> <span data-fr="Bilingue Français - Anglais" data-en="Bilingual French - English">Bilingue Français - Anglais</span> <small>IELTS & TOEIC</small>
 				</div>
 			</div>
 		</section>
@@ -237,12 +241,21 @@ const education = [
 
 	document.querySelectorAll('.language-button').forEach((button) => {
 		button.addEventListener('click', () => {
-			const language = button.dataset.language ?? 'fr';
+			const language = button.dataset.language === 'fr' ? 'en' : 'fr';
 			document.documentElement.lang = language;
 			document.querySelectorAll('[data-fr][data-en]').forEach((element) => {
-				element.innerHTML = element.dataset[language] ?? element.dataset.fr ?? '';
+				const translatedMarkup = element.getAttribute(`data-${language}`);
+				const fallbackMarkup = element.getAttribute('data-fr');
+				if (translatedMarkup !== null || fallbackMarkup !== null) {
+					element.innerHTML = translatedMarkup ?? fallbackMarkup ?? '';
+				}
 			});
-			document.querySelectorAll('.language-button').forEach((item) => item.classList.toggle('is-active', item === button));
+			button.dataset.language = language;
+			button.setAttribute('aria-pressed', String(language === 'en'));
+			button.setAttribute('aria-label', language === 'fr' ? 'Switch language to English' : 'Passer le site en français');
+			button.querySelectorAll('.language-option').forEach((option, index) => {
+				option.classList.toggle('is-active', (language === 'fr' && index === 0) || (language === 'en' && index === 1));
+			});
 		});
 	});
 </script>
@@ -262,9 +275,9 @@ const education = [
 	.nav-links { align-items: center; display: flex; gap: 35px; }
 	.nav-links a { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; text-decoration: none; transition: color .2s; }
 	.nav-links a:hover { color: var(--accent); }
-	.language-switch { align-items: center; color: var(--muted); display: flex; font-family: 'DM Mono', monospace; font-size: 10px; gap: 4px; }
-	.language-button { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; padding: 3px; }
-	.language-button.is-active { color: var(--accent); }
+	.language-button { align-items: center; background: none; border: 0; color: var(--muted); cursor: pointer; display: flex; font: 10px 'DM Mono', monospace; gap: 2px; padding: 3px; }
+	.language-option { transition: color .2s, font-weight .2s; }
+	.language-option.is-active { color: var(--accent); font-weight: 700; }
 	.nav-contact { border: 1px solid var(--line); color: var(--ink) !important; padding: 10px 13px; }
 	.nav-contact span, .button span, .footer-email span { color: var(--accent); margin-left: 7px; }
 	.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 8%; min-height: 650px; padding-bottom: 95px; padding-top: 100px; }
@@ -274,9 +287,9 @@ const education = [
 	.status-dot { background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent); height: 6px; width: 6px; }
 	h1, h2, h3, p { margin-top: 0; }
 	h1 { font-size: clamp(54px, 7.5vw, 106px); letter-spacing: -.08em; line-height: .91; margin-bottom: 36px; max-width: 740px; }
-	h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
+	h1 :global(em), h2 :global(em) { color: var(--accent); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
 	.hero-intro { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 490px; }
-	.hero-intro strong { color: var(--ink); font-weight: 500; }
+	.hero-intro :global(strong) { color: var(--ink); font-weight: 500; }
 	.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 39px; }
 	.button { font-family: 'DM Mono', monospace; font-size: 11px; padding: 15px 18px; text-decoration: none; transition: transform .2s, background .2s; }
 	.button:hover { transform: translateY(-3px); }
