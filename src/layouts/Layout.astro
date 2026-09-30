@@ -10,6 +10,11 @@
 			name="description"
 			content="Portfolio de Thomas Boudot, ingénieur informatique spécialisé en réalité virtuelle et augmentée."
 		/>
+		<script is:inline>
+			const savedTheme = localStorage.getItem('theme');
+			const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+			document.documentElement.dataset.theme = savedTheme || systemTheme;
+		</script>
 		<title>Thomas Boudot — Ingénieur VR / AR</title>
 	</head>
 	<body>

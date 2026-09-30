@@ -56,6 +56,9 @@ const education = [
 				>
 					<span class="language-option is-active">FR</span><span aria-hidden="true"> / </span><span class="language-option">EN</span>
 				</button>
+				<button class="theme-button" type="button" aria-label="Switch to light mode" aria-pressed="false">
+					<span class="theme-icon" aria-hidden="true">☼</span>
+				</button>
 				<a class="nav-contact" href="mailto:thomasboudot2003@gmail.com"><span data-fr="Me contacter" data-en="Contact me">Me contacter</span> ↗</a>
 			</div>
 		</nav>
@@ -73,19 +76,39 @@ const education = [
 					<a class="button button-primary" href="#experience"><span data-fr="Découvrir mon parcours" data-en="Explore my journey">Découvrir mon parcours</span> <span>↓</span></a>
 					<a class="button button-secondary" href="mailto:thomasboudot2003@gmail.com"><span data-fr="Échanger avec moi" data-en="Let's talk">Échanger avec moi</span> <span>↗</span></a>
 				</div>
+				<a class="linkedin-button" href="https://www.linkedin.com/in/thomas-boudot-46216b211/" target="_blank" rel="noreferrer" aria-label="Voir le profil LinkedIn de Thomas Boudot">
+					<span class="linkedin-icon" aria-hidden="true">in</span>
+					<span data-fr="Profil LinkedIn" data-en="LinkedIn profile">Profil LinkedIn</span>
+					<span aria-hidden="true">↗</span>
+				</a>
 			</div>
 
 			<div class="hero-visual" aria-label="Profil de Thomas Boudot">
-				<div class="visual-grid"></div>
-				<div class="orbit orbit-large"></div>
-				<div class="orbit orbit-small"></div>
-				<div class="visual-core">
-					<span class="core-label" data-fr="Réalité<br />virtuelle" data-en="Virtual<br />Reality">Réalité<br />virtuelle</span>
-					<span class="core-symbol">&amp;</span>
-					<span class="core-label" data-fr="Réalité<br />augmentée" data-en="Augmented<br />Reality">Réalité<br />augmentée</span>
+				<div class="visual-slide is-active" data-slide="0" aria-hidden="false">
+					<div class="visual-grid"></div>
+					<div class="orbit orbit-large"></div>
+					<div class="orbit orbit-small"></div>
+					<div class="visual-core">
+						<span class="core-label" data-fr="Réalité<br />virtuelle" data-en="Virtual<br />Reality">Réalité<br />virtuelle</span>
+						<span class="core-symbol">&amp;</span>
+						<span class="core-label" data-fr="Réalité<br />augmentée" data-en="Augmented<br />Reality">Réalité<br />augmentée</span>
+					</div>
+					<div class="visual-note note-top">01 / profil</div>
+					<div class="visual-note note-bottom">France</div>
 				</div>
-				<div class="visual-note note-top">01 / profil</div>
-				<div class="visual-note note-bottom">France</div>
+				<div class="visual-slide profile-placeholder" data-slide="1" aria-hidden="true">
+					<img src="/thomas-boudot-profile.png" alt="Portrait de Thomas Boudot" class="profile-image" />
+					<div class="visual-note note-top">02 / profil</div>
+					<div class="visual-note note-bottom">Thomas Boudot</div>
+				</div>
+				<div class="carousel-controls" aria-label="Contrôles du profil">
+					<button class="carousel-arrow carousel-previous" type="button" aria-label="Afficher le visuel précédent">←</button>
+					<div class="carousel-dots">
+						<button class="carousel-dot is-active" type="button" aria-label="Afficher le visuel 1" aria-current="true"></button>
+						<button class="carousel-dot" type="button" aria-label="Afficher le visuel 2" aria-current="false"></button>
+					</div>
+					<button class="carousel-arrow carousel-next" type="button" aria-label="Afficher le visuel suivant">→</button>
+				</div>
 			</div>
 		</section>
 
@@ -122,7 +145,7 @@ const education = [
 							<p class="description" data-fr={item.description} data-en={item.descriptionEn}>{item.description}</p>
 							<span class="tag" data-fr={item.tag} data-en={item.tagEn}>{item.tag}</span>
 						</div>
-						<span class="arrow">↗</span>
+						<a class="arrow" href={index === 0 ? 'https://lnkd.in/p/emaEfutm' : 'https://loop.lille.inria.fr/people/'} target="_blank" rel="noreferrer" aria-label={`Voir ${item.company}`}>↗</a>
 					</article>
 				))}
 			</div>
@@ -239,6 +262,26 @@ const education = [
 	updateTicker();
 	document.fonts?.ready.then(updateTicker);
 
+	const carouselSlides = [...document.querySelectorAll('.visual-slide')];
+	const carouselDots = [...document.querySelectorAll('.carousel-dot')];
+	let activeSlide = 0;
+	const showSlide = (index) => {
+		activeSlide = (index + carouselSlides.length) % carouselSlides.length;
+		carouselSlides.forEach((slide, slideIndex) => {
+			const isActive = slideIndex === activeSlide;
+			slide.classList.toggle('is-active', isActive);
+			slide.setAttribute('aria-hidden', String(!isActive));
+		});
+		carouselDots.forEach((dot, dotIndex) => {
+			const isActive = dotIndex === activeSlide;
+			dot.classList.toggle('is-active', isActive);
+			dot.setAttribute('aria-current', String(isActive));
+		});
+	};
+	document.querySelector('.carousel-previous')?.addEventListener('click', () => showSlide(activeSlide - 1));
+	document.querySelector('.carousel-next')?.addEventListener('click', () => showSlide(activeSlide + 1));
+	carouselDots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+
 	document.querySelectorAll('.language-button').forEach((button) => {
 		button.addEventListener('click', () => {
 			const language = button.dataset.language === 'fr' ? 'en' : 'fr';
@@ -258,12 +301,28 @@ const education = [
 			});
 		});
 	});
+
+	const themeButton = document.querySelector('.theme-button');
+	const updateThemeButton = (theme) => {
+		const isLight = theme === 'light';
+		themeButton?.setAttribute('aria-pressed', String(isLight));
+		themeButton?.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+		if (themeButton) themeButton.querySelector('.theme-icon').textContent = isLight ? '☾' : '☼';
+	};
+	updateThemeButton(document.documentElement.dataset.theme ?? 'dark');
+	themeButton?.addEventListener('click', () => {
+		const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+		document.documentElement.dataset.theme = theme;
+		localStorage.setItem('theme', theme);
+		updateThemeButton(theme);
+	});
 </script>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
-	:global(:root) { --ink: #f2f0e9; --muted: #9b9b91; --paper: #101110; --accent: #3d9fdb; --line: rgba(242, 240, 233, .16); }
+	:global(:root) { --ink: #f2f0e9; --muted: #9b9b91; --paper: #101110; --accent: #3d9fdb; --line: rgba(242, 240, 233, .16); color-scheme: dark; }
+	:global(:root[data-theme='light']) { --ink: #17151b; --muted: #68646f; --paper: #f4f1ea; --line: rgba(23, 21, 27, .18); color-scheme: light; }
 	:global(html) { scroll-behavior: smooth; background: var(--paper); }
 	:global(body) { background: var(--paper); color: var(--ink); font-family: 'Manrope', sans-serif; }
 	:global(*) { box-sizing: border-box; }
@@ -278,6 +337,8 @@ const education = [
 	.language-button { align-items: center; background: none; border: 0; color: var(--muted); cursor: pointer; display: flex; font: 10px 'DM Mono', monospace; gap: 2px; padding: 3px; }
 	.language-option { transition: color .2s, font-weight .2s; }
 	.language-option.is-active { color: var(--accent); font-weight: 700; }
+	.theme-button { align-items: center; background: none; border: 1px solid var(--line); color: var(--ink); cursor: pointer; display: flex; font: 16px/1 'DM Mono', monospace; height: 30px; justify-content: center; padding: 0; transition: border-color .2s, color .2s; width: 30px; }
+	.theme-button:hover { border-color: var(--accent); color: var(--accent); }
 	.nav-contact { border: 1px solid var(--line); color: var(--ink) !important; padding: 10px 13px; }
 	.nav-contact span, .button span, .footer-email span { color: var(--accent); margin-left: 7px; }
 	.hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 8%; min-height: 650px; padding-bottom: 95px; padding-top: 100px; }
@@ -292,12 +353,17 @@ const education = [
 	.hero-intro { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 490px; }
 	.hero-intro :global(strong) { color: var(--ink); font-weight: 500; }
 	.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 39px; }
+	.linkedin-button { align-items: center; color: var(--muted); display: inline-flex; font-family: 'DM Mono', monospace; font-size: 10px; gap: 9px; margin-top: 20px; text-decoration: none; transition: color .2s, transform .2s; }
+	.linkedin-button:hover { color: var(--accent); transform: translateX(3px); }
+	.linkedin-icon { align-items: center; background: var(--ink); color: var(--paper); display: flex; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; height: 22px; justify-content: center; width: 22px; }
 	.button { font-family: 'DM Mono', monospace; font-size: 11px; padding: 15px 18px; text-decoration: none; transition: transform .2s, background .2s; }
 	.button:hover { transform: translateY(-3px); }
 	.button-primary { background: var(--accent); color: var(--paper); }
 	.button-primary span { color: var(--paper); }
 	.button-secondary { border: 1px solid var(--line); color: var(--ink); }
-	.hero-visual { align-self: center; aspect-ratio: 1; max-width: 465px; position: relative; }
+	.hero-visual { align-self: center; aspect-ratio: 1; max-width: 465px; padding-bottom: 43px; position: relative; }
+	.visual-slide { inset: 0 0 43px; opacity: 0; pointer-events: none; position: absolute; transform: translateX(10px); transition: opacity .35s, transform .35s; }
+	.visual-slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0); }
 	.visual-grid { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 58px 58px; inset: 10%; opacity: .4; position: absolute; transform: rotate(12deg); }
 	.orbit { border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent); border-radius: 50%; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%) rotate(-25deg); }
 	.orbit-large { height: 83%; width: 83%; }
@@ -308,6 +374,17 @@ const education = [
 	.visual-note { position: absolute; }
 	.note-top { right: 0; top: 13%; }
 	.note-bottom { bottom: 12%; left: 3%; }
+	.profile-placeholder { align-items: center; border: 1px solid var(--line); display: flex; justify-content: center; }
+	.profile-placeholder::before { border: 1px solid var(--accent); content: ''; height: 74%; position: absolute; transform: rotate(45deg); width: 74%; }
+	.profile-image { height: 100%; object-fit: cover; object-position: center top; position: relative; width: 100%; z-index: 1; }
+	.profile-placeholder .visual-note { z-index: 2; }
+	.profile-placeholder .visual-note { background: rgba(0, 0, 0, .58); padding: 7px 9px; }
+	.carousel-controls { align-items: center; bottom: 0; display: flex; gap: 14px; left: 50%; position: absolute; transform: translateX(-50%); }
+	.carousel-arrow { background: none; border: 0; color: var(--muted); cursor: pointer; font: 16px 'DM Mono', monospace; padding: 3px; }
+	.carousel-arrow:hover { color: var(--accent); }
+	.carousel-dots { display: flex; gap: 7px; }
+	.carousel-dot { background: var(--muted); border: 0; border-radius: 50%; cursor: pointer; height: 5px; opacity: .5; padding: 0; width: 5px; }
+	.carousel-dot.is-active { background: var(--accent); opacity: 1; }
 	.ticker { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); color: var(--accent); display: flex; font-family: 'DM Mono', monospace; font-size: 11px; overflow: hidden; padding: 17px 0; white-space: nowrap; }
 	.ticker-track { animation: scroll 32s linear infinite; display: flex; width: max-content; }
 	.ticker-set { align-items: center; display: flex; flex: none; gap: 27px; padding-right: 27px; }
@@ -323,7 +400,8 @@ const education = [
 	.role { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; margin-bottom: 20px; }
 	.description { color: var(--muted); font-size: 13px; line-height: 1.65; margin-bottom: 18px; max-width: 490px; }
 	.tag { border: 1px solid var(--line); color: var(--ink); font-family: 'DM Mono', monospace; font-size: 10px; padding: 7px 9px; }
-	.arrow { color: var(--accent); font-size: 21px; }
+	.arrow { color: var(--accent); font-size: 21px; text-decoration: none; transition: transform .2s; }
+	.arrow:hover { transform: translate(2px, -2px); }
 	.expertise-body { padding-top: 5px; }
 	.expertise-intro { color: var(--muted); font-size: 16px; line-height: 1.65; max-width: 440px; }
 	.skill-list { display: flex; flex-wrap: wrap; gap: 10px 7px; margin: 34px 0; }
